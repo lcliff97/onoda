@@ -1,17 +1,6 @@
 <template>
   <main class="min-h-screen bg-stone text-ink">
-    <header
-      class="flex items-center justify-between border-b border-ink/20 px-6 py-5 md:px-12"
-    >
-      <p class="font-display text-3xl tracking-wide">
-        ONODA<span class="text-vermilion">.</span>
-      </p>
-
-      <p class="text-xs font-semibold uppercase tracking-[0.2em]">
-        Brazilian Jiu-Jitsu / MMA
-      </p>
-    </header>
-
+    <SiteHeader></SiteHeader>
     <section class="px-6 py-20 md:px-12 md:py-32">
       <p
         class="mb-6 text-xs font-semibold uppercase tracking-[0.25em] text-slate"
