@@ -1,6 +1,24 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
+
 const isMenuOpen = ref(false);
+
+let desktopQuery: MediaQueryList | undefined;
+
+function handleViewportChange(event: MediaQueryListEvent) {
+  if (event.matches) {
+    isMenuOpen.value = false;
+  }
+}
+
+onMounted(() => {
+  desktopQuery = window.matchMedia("(min-width: 768px)");
+  desktopQuery.addEventListener("change", handleViewportChange);
+});
+
+onUnmounted(() => {
+  desktopQuery?.removeEventListener("change", handleViewportChange);
+});
 </script>
 
 <template>
