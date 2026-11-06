@@ -21,72 +21,176 @@
 
       <div class="hero__visual">
         <svg class="hero__sun" viewBox="0 0 400 400" aria-hidden="true">
-          <!-- Main upper and right-hand brushstroke -->
-          <path
-            d="
-      M 185 35
-      C 231 23, 285 49, 323 91
-      C 358 129, 376 181, 369 226
-      C 365 244, 358 261, 348 274
-      L 328 263
-      C 341 242, 346 220, 342 194
-      C 338 143, 306 95, 268 72
-      C 239 54, 208 50, 181 59
+          <defs>
+            <!-- Procedural brush-edge texture -->
+            <filter
+              id="brush-texture"
+              x="-15%"
+              y="-15%"
+              width="130%"
+              height="130%"
+              color-interpolation-filters="sRGB"
+            >
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0.038"
+                numOctaves="2"
+                seed="8"
+                result="noise"
+              />
+
+              <feDisplacementMap
+                in="SourceGraphic"
+                in2="noise"
+                scale="11"
+                xChannelSelector="R"
+                yChannelSelector="G"
+              />
+            </filter>
+          </defs>
+
+          <!-- Main brushstroke artwork -->
+          <g filter="url(#brush-texture)">
+            <!-- 1. Heavy upper-right sweep -->
+            <path
+              d="
+      M 178 38
+      C 231 17, 297 48, 342 111
+      C 372 153, 386 210, 361 263
+      C 357 273, 352 283, 345 292
+      L 322 270
+      C 344 232, 350 193, 331 150
+      C 309 101, 265 62, 219 56
+      C 198 53, 178 59, 160 71
       Z
     "
-            fill="#E5392D"
-          />
+              fill="#E5392D"
+            />
 
-          <!-- Lower-left brushstroke -->
-          <path
-            d="
-      M 347 275
-      C 319 331, 258 369, 198 368
-      C 136 367, 79 331, 54 278
-      C 40 247, 38 212, 47 183
-      L 69 193
-      C 61 223, 68 257, 87 282
-      C 111 318, 154 340, 198 341
-      C 251 341, 300 308, 327 264
+            <!-- 2. Broad lower-left sweep -->
+            <path
+              d="
+      M 345 283
+      C 322 331, 270 369, 211 373
+      C 147 380, 83 345, 53 291
+      C 34 257, 31 218, 47 177
+      L 72 190
+      C 62 218, 68 251, 85 279
+      C 109 319, 151 343, 198 345
+      C 248 348, 298 317, 323 270
       Z
     "
-            fill="#E5392D"
-            opacity="0.92"
-          />
+              fill="#E5392D"
+              opacity="0.94"
+            />
 
-          <!-- Lighter upper-left brush movement -->
-          <path
-            d="
-      M 49 180
-      C 60 117, 102 66, 156 44
-      L 165 62
-      C 119 84, 84 126, 70 184
+            <!-- 3. Lighter upper-left brush movement -->
+            <path
+              d="
+      M 48 183
+      C 56 127, 96 72, 150 45
+      C 158 41, 168 37, 179 34
+      L 185 53
+      C 169 59, 155 68, 141 78
+      C 104 105, 80 143, 70 187
       Z
     "
-            fill="#E5392D"
-            opacity="0.72"
-          />
+              fill="#E5392D"
+              opacity="0.68"
+            />
 
-          <!-- Small dry-brush accents -->
-          <path
-            d="M 82 105 L 101 83 L 96 108 Z"
-            fill="#E5392D"
-            opacity="0.65"
-          />
+            <!-- 4. Additional pigment variation -->
+            <path
+              d="
+      M 238 45
+      C 281 59, 320 94, 341 137
+      L 330 143
+      C 306 99, 274 70, 238 59
+      Z
+    "
+              fill="#B92E25"
+              opacity="0.24"
+            />
 
-          <path
-            d="M 354 283 L 371 266 L 364 293 Z"
-            fill="#E5392D"
-            opacity="0.75"
-          />
+            <path
+              d="
+      M 72 275
+      C 94 319, 136 345, 179 352
+      L 173 360
+      C 128 351, 91 326, 68 288
+      Z
+    "
+              fill="#B92E25"
+              opacity="0.2"
+            />
 
-          <path
-            d="M 116 339 L 140 353 L 126 350 Z"
-            fill="#E5392D"
-            opacity="0.5"
-          />
+            <!-- 5. Small dry-brush accents -->
+            <path
+              d="M 82 105 L 101 83 L 96 108 Z"
+              fill="#E5392D"
+              opacity="0.65"
+            />
+
+            <path
+              d="M 354 283 L 371 266 L 364 293 Z"
+              fill="#E5392D"
+              opacity="0.75"
+            />
+
+            <path
+              d="M 116 339 L 140 353 L 126 350 Z"
+              fill="#E5392D"
+              opacity="0.5"
+            />
+          </g>
+
+          <!-- 6. Dry-brush texture: fragmented pigment -->
+          <g class="hero__sun-dry-brush" fill="none" stroke="#F2EFE8">
+            <!-- Upper-right: broken, irregular pigment -->
+            <path
+              d="M 270 68 L 277 72 M 283 76 L 290 81"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              opacity="0.75"
+            />
+
+            <path
+              d="M 321 119 L 326 127 M 331 135 L 335 143"
+              stroke-width="2"
+              stroke-linecap="round"
+              opacity="0.8"
+            />
+
+            <path
+              d="M 352 194 L 355 202 M 356 210 L 357 217"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              opacity="0.7"
+            />
+
+            <!-- Lower-left: scattered dry-brush gaps -->
+            <path
+              d="M 48 222 L 49 231 M 50 239 L 52 246"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              opacity="0.8"
+            />
+
+            <path
+              d="M 77 295 L 83 302 M 88 309 L 94 315"
+              stroke-width="2"
+              stroke-linecap="round"
+              opacity="0.7"
+            />
+
+            <path
+              d="M 154 350 L 163 353 M 172 356 L 180 357"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              opacity="0.65"
+            />
+          </g>
         </svg>
-
         <img
           class="hero__image"
           src="/images/onoda-samurai-cutout.png"
