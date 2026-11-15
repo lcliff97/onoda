@@ -14,9 +14,9 @@
           Built through practice. Refined through discipline.
         </p>
 
-        <a href="/classes" class="hero__cta">
+        <NuxtLink to="/classes" class="hero__cta">
           BOOK YOUR FREE TRIAL CLASS <span aria-hidden="true">↗</span>
-        </a>
+        </NuxtLink>
       </div>
 
       <div class="hero__visual">
