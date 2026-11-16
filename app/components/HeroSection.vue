@@ -191,6 +191,20 @@
             />
           </g>
         </svg>
+        <svg
+          class="hero__calligraphy"
+          viewBox="0 0 120 360"
+          role="img"
+          aria-label="鍛錬 — disciplined training"
+        >
+          <title>鍛錬 — Disciplined training</title>
+
+          <text x="60" y="30" class="hero__calligraphy-text">鍛錬</text>
+
+          <rect x="42" y="265" width="36" height="36" class="hero__seal" />
+
+          <text x="60" y="292" class="hero__seal-text">印</text>
+        </svg>
         <img
           class="hero__image"
           src="/images/onoda-samurai-cutout.png"
@@ -305,6 +319,43 @@
   .hero__image {
     width: 145%;
     margin-left: -45%;
+  }
+}
+
+/* Japanese calligraphy */
+.hero__calligraphy {
+  position: absolute;
+  z-index: 2;
+  top: 12%;
+  left: 2%;
+  width: 90px;
+  height: 270px;
+  overflow: visible;
+}
+
+.hero__calligraphy-text {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: "Yuji Syuku", serif;
+  font-size: 76px;
+  fill: var(--color-ink);
+  text-anchor: middle;
+}
+
+.hero__seal {
+  fill: var(--color-vermilion);
+}
+
+.hero__seal-text {
+  fill: var(--color-stone);
+  font-family: serif;
+  font-size: 22px;
+  text-anchor: middle;
+}
+
+@media (min-width: 768px) {
+  .hero__calligraphy {
+    left: -4%;
   }
 }
 </style>
