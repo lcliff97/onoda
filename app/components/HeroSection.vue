@@ -242,9 +242,9 @@
 
 .hero__title {
   margin: 0;
-  font-family: var(--font-display);
+  font-family: Anton, sans-serif;
   font-size: clamp(4rem, 11vw, 7rem);
-  line-height: 0.85;
+  line-height: 0.89;
   letter-spacing: -0.025em;
   text-transform: uppercase;
 }
@@ -292,6 +292,7 @@
   max-width: none;
   height: auto;
   margin-left: -10%;
+  filter: saturate(0.35);
 }
 
 /* Vermilion sun */
@@ -305,20 +306,28 @@
 }
 
 /* Desktop layout */
+/* Desktop layout */
 @media (min-width: 768px) {
   .hero__inner {
     grid-template-columns: 1fr 0.85fr;
     gap: 2rem;
-    padding: 5rem 3rem;
+    padding: 5rem 3rem 0;
   }
 
   .hero__visual {
+    position: relative;
     min-height: 600px;
   }
 
   .hero__image {
-    width: 145%;
-    margin-left: -45%;
+    position: absolute;
+    right: -3rem;
+    bottom: 0;
+    display: block;
+    width: 135%;
+    max-width: none;
+    height: auto;
+    margin: 0;
   }
 }
 
