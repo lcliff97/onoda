@@ -292,7 +292,17 @@
   max-width: none;
   height: auto;
   margin-left: -10%;
-  filter: saturate(0.35);
+
+  filter: saturate(0.35) contrast(0.92) brightness(0.98);
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 94%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(to bottom, black 0%, black 94%, transparent 100%);
 }
 
 /* Vermilion sun */
@@ -305,9 +315,37 @@
   height: auto;
 }
 
+/* Tablet layout */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero__inner {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 1rem;
+    padding: 4rem 2rem 0;
+  }
+
+  .hero__title {
+    font-size: clamp(3.5rem, 8vw, 5.5rem);
+    line-height: 0.89;
+  }
+
+  .hero__visual {
+    position: relative;
+    min-height: 480px;
+  }
+
+  .hero__image {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0;
+    width: 155%;
+    max-width: none;
+    height: auto;
+    margin: 0;
+  }
+}
+
 /* Desktop layout */
-/* Desktop layout */
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .hero__inner {
     grid-template-columns: 1fr 0.85fr;
     gap: 2rem;
