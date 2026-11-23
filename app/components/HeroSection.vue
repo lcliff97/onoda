@@ -22,7 +22,7 @@
       <div class="hero__visual">
         <svg class="hero__sun" viewBox="0 0 400 400" aria-hidden="true">
           <defs>
-            <!-- Procedural brush-edge texture -->
+            <!-- Original brush-edge distortion -->
             <filter
               id="brush-texture"
               x="-15%"
@@ -47,79 +47,104 @@
                 yChannelSelector="G"
               />
             </filter>
+
+            <!-- Clip the independent pigment layer to the ensō silhouette -->
+            <clipPath id="enso-clip">
+              <path
+                d="
+                  M 112 74
+                  C 127 59, 147 48, 166 42
+                  C 202 28, 244 35, 277 55
+                  C 322 82, 355 128, 366 178
+                  C 378 229, 356 282, 319 319
+                  C 280 358, 223 376, 169 357
+                  C 115 339, 72 296, 53 244
+                  C 39 207, 42 174, 59 143
+                  C 62 138, 66 135, 70 133
+                  C 69 142, 68 151, 67 160
+                  C 64 177, 68 195, 75 214
+                  C 91 258, 119 294, 157 318
+                  C 198 344, 246 346, 284 324
+                  C 324 302, 350 259, 354 214
+                  C 359 166, 338 118, 302 87
+                  C 266 56, 219 42, 176 51
+                  C 152 56, 131 70, 115 92
+                  C 110 86, 108 79, 112 74
+                  Z
+                "
+              />
+            </clipPath>
+
+            <!-- Independent pigment texture generator -->
+            <filter
+              id="pigment-noise"
+              x="0%"
+              y="0%"
+              width="100%"
+              height="100%"
+              color-interpolation-filters="sRGB"
+            >
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0.08"
+                numOctaves="3"
+                seed="12"
+                result="noise"
+              />
+
+              <feColorMatrix
+                in="noise"
+                type="matrix"
+                values="
+                  0 0 0 0 0.55
+                  0 0 0 0 0.08
+                  0 0 0 0 0.05
+                  0 0 0.45 0 0
+                "
+              />
+            </filter>
           </defs>
 
           <!-- Main continuous ensō brushstroke -->
           <g filter="url(#brush-texture)">
             <path
               d="
-  M 108 78
-
-  C 140 45, 175 30, 215 34
-  C 285 38, 342 87, 365 151
-  C 388 218, 361 289, 311 330
-  C 263 370, 198 378, 143 348
-  C 91 321, 55 270, 48 215
-  C 45 190, 49 166, 58 145
-
-  C 69 162, 70 191, 77 217
-  C 91 264, 123 300, 165 320
-  C 209 341, 258 335, 295 307
-  C 334 277, 352 222, 337 169
-  C 321 115, 278 75, 227 65
-  C 188 57, 151 64, 125 88
-  C 118 94, 112 101, 108 78
-
-  Z
-"
+                M 112 74
+                C 127 59, 147 48, 166 42
+                C 202 28, 244 35, 277 55
+                C 322 82, 355 128, 366 178
+                C 378 229, 356 282, 319 319
+                C 280 358, 223 376, 169 357
+                C 115 339, 72 296, 53 244
+                C 39 207, 42 174, 59 143
+                C 62 138, 66 135, 70 133
+                C 69 142, 68 151, 67 160
+                C 64 177, 68 195, 75 214
+                C 91 258, 119 294, 157 318
+                C 198 344, 246 346, 284 324
+                C 324 302, 350 259, 354 214
+                C 359 166, 338 118, 302 87
+                C 266 56, 219 42, 176 51
+                C 152 56, 131 70, 115 92
+                C 110 86, 108 79, 112 74
+                Z
+              "
               fill="#E5392D"
             />
           </g>
 
-          <!-- <path
-              d="
-      M 238 45
-      C 281 59, 320 94, 341 137
-      L 330 143
-      C 306 99, 274 70, 238 59
-      Z
-    "
-              fill="#B92E25"
-              opacity="0.24"
+          <!-- Independent pigment texture, clipped to the ensō shape -->
+          <g clip-path="url(#enso-clip)" opacity="0.28">
+            <rect
+              x="0"
+              y="0"
+              width="400"
+              height="400"
+              filter="url(#pigment-noise)"
             />
+          </g>
 
-            <path
-              d="
-      M 72 275
-      C 94 319, 136 345, 179 352
-      L 173 360
-      C 128 351, 91 326, 68 288
-      Z
-    "
-              fill="#B92E25"
-              opacity="0.2"
-            />
-
-          
-            <path
-              d="M 82 105 L 101 83 L 96 108 Z"
-              fill="#E5392D"
-              opacity="0.65"
-            />
-
-            <path
-              d="M 354 283 L 371 266 L 364 293 Z"
-              fill="#E5392D"
-              opacity="0.75"
-            />
-
-            <path
-              d="M 116 339 L 140 353 L 126 350 Z"
-              fill="#E5392D"
-              opacity="0.5"
-            /> -->
-
-          <!-- 6. Dry-brush texture: fragmented pigment -->
+          <!-- Dry-brush details retained for a later refinement pass -->
           <g
             class="hero__sun-dry-brush"
             fill="none"
@@ -171,6 +196,7 @@
             />
           </g>
         </svg>
+
         <svg
           class="hero__calligraphy"
           viewBox="0 0 120 360"
@@ -185,6 +211,7 @@
 
           <text x="60" y="292" class="hero__seal-text">印</text>
         </svg>
+
         <img
           class="hero__image"
           src="/images/onoda-samurai-cutout.png"
