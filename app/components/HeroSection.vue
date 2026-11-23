@@ -49,58 +49,34 @@
             </filter>
           </defs>
 
-          <!-- Main brushstroke artwork -->
+          <!-- Main continuous ensō brushstroke -->
           <g filter="url(#brush-texture)">
-            <!-- 1. Heavy upper-right sweep -->
             <path
               d="
-      M 178 38
-      C 231 17, 297 48, 342 111
-      C 372 153, 386 210, 361 263
-      C 357 273, 352 283, 345 292
-      L 322 270
-      C 344 232, 350 193, 331 150
-      C 309 101, 265 62, 219 56
-      C 198 53, 178 59, 160 71
-      Z
-    "
+  M 108 78
+
+  C 140 45, 175 30, 215 34
+  C 285 38, 342 87, 365 151
+  C 388 218, 361 289, 311 330
+  C 263 370, 198 378, 143 348
+  C 91 321, 55 270, 48 215
+  C 45 190, 49 166, 58 145
+
+  C 69 162, 70 191, 77 217
+  C 91 264, 123 300, 165 320
+  C 209 341, 258 335, 295 307
+  C 334 277, 352 222, 337 169
+  C 321 115, 278 75, 227 65
+  C 188 57, 151 64, 125 88
+  C 118 94, 112 101, 108 78
+
+  Z
+"
               fill="#E5392D"
             />
+          </g>
 
-            <!-- 2. Broad lower-left sweep -->
-            <path
-              d="
-      M 345 283
-      C 322 331, 270 369, 211 373
-      C 147 380, 83 345, 53 291
-      C 34 257, 31 218, 47 177
-      L 72 190
-      C 62 218, 68 251, 85 279
-      C 109 319, 151 343, 198 345
-      C 248 348, 298 317, 323 270
-      Z
-    "
-              fill="#E5392D"
-              opacity="0.94"
-            />
-
-            <!-- 3. Lighter upper-left brush movement -->
-            <path
-              d="
-      M 48 183
-      C 56 127, 96 72, 150 45
-      C 158 41, 168 37, 179 34
-      L 185 53
-      C 169 59, 155 68, 141 78
-      C 104 105, 80 143, 70 187
-      Z
-    "
-              fill="#E5392D"
-              opacity="0.68"
-            />
-
-            <!-- 4. Additional pigment variation -->
-            <path
+          <!-- <path
               d="
       M 238 45
       C 281 59, 320 94, 341 137
@@ -124,7 +100,7 @@
               opacity="0.2"
             />
 
-            <!-- 5. Small dry-brush accents -->
+          
             <path
               d="M 82 105 L 101 83 L 96 108 Z"
               fill="#E5392D"
@@ -141,11 +117,15 @@
               d="M 116 339 L 140 353 L 126 350 Z"
               fill="#E5392D"
               opacity="0.5"
-            />
-          </g>
+            /> -->
 
           <!-- 6. Dry-brush texture: fragmented pigment -->
-          <g class="hero__sun-dry-brush" fill="none" stroke="#F2EFE8">
+          <g
+            class="hero__sun-dry-brush"
+            fill="none"
+            stroke="#F2EFE8"
+            display="none"
+          >
             <!-- Upper-right: broken, irregular pigment -->
             <path
               d="M 270 68 L 277 72 M 283 76 L 290 81"
@@ -310,7 +290,7 @@
   position: absolute;
   z-index: -1;
   top: 5%;
-  right: 5%;
+  right: -2%;
   width: 70%;
   height: auto;
 }
