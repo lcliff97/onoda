@@ -198,6 +198,7 @@
         </svg>
 
         <svg
+          ref="calligraphyRoot"
           class="hero__calligraphy"
           viewBox="0 0 120 360"
           role="img"
@@ -205,11 +206,31 @@
         >
           <title>鍛錬 — Disciplined training</title>
 
-          <text x="60" y="30" class="hero__calligraphy-text">鍛錬</text>
+          <defs>
+            <clipPath id="calligraphy-reveal">
+              <rect
+                class="hero__calligraphy-mask"
+                x="0"
+                y="0"
+                width="120"
+                height="0"
+              />
+            </clipPath>
+          </defs>
 
-          <rect x="42" y="265" width="36" height="36" class="hero__seal" />
+          <text
+            x="60"
+            y="75"
+            class="hero__calligraphy-text"
+            clip-path="url(#calligraphy-reveal)"
+          >
+            鍛錬
+          </text>
 
-          <text x="60" y="292" class="hero__seal-text">印</text>
+          <g class="hero__seal-group">
+            <rect x="42" y="265" width="36" height="36" class="hero__seal" />
+            <text x="60" y="292" class="hero__seal-text">印</text>
+          </g>
         </svg>
 
         <img
@@ -221,6 +242,68 @@
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+import { onMounted, onBeforeUnmount, ref } from "vue";
+import { gsap } from "gsap";
+
+const calligraphyRoot = ref<SVGSVGElement | null>(null);
+
+let animationContext: ReturnType<typeof gsap.context> | undefined;
+
+onMounted(() => {
+  const root = calligraphyRoot.value;
+
+  if (!root) return;
+
+  animationContext = gsap.context(() => {
+    const mask = root.querySelector(".hero__calligraphy-mask");
+    const seal = root.querySelector(".hero__seal-group");
+
+    if (!mask || !seal) return;
+
+    // Respect users who prefer reduced motion.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.set(mask, { attr: { height: 360 } });
+      gsap.set(seal, { autoAlpha: 1 });
+      return;
+    }
+
+    const timeline = gsap.timeline({
+      defaults: {
+        ease: "power2.out",
+      },
+    });
+
+    // Reveal the calligraphy from top to bottom.
+    timeline.to(mask, {
+      attr: { height: 360 },
+      duration: 1.8,
+      ease: "power2.inOut",
+    });
+
+    // Bring the seal into view immediately afterwards.
+    timeline.fromTo(
+      seal,
+      {
+        autoAlpha: 0,
+        scale: 0.94,
+      },
+      {
+        autoAlpha: 1,
+        scale: 1,
+        duration: 0.35,
+        ease: "power2.out",
+      },
+      "-=0.05",
+    );
+  }, root);
+});
+
+onBeforeUnmount(() => {
+  animationContext?.revert();
+});
+</script>
 
 <style scoped>
 .hero {
